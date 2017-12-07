@@ -8,7 +8,7 @@ module.exports = {
     rules: [{
       test: /\.svg$/,
       use: {
-        loader: './lib/index.js',
+        loader: './index.js',
         options: {
           regex: '(\\w+?)="(.+?)"',
           flags: 'g',
