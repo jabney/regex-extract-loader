@@ -2,8 +2,6 @@ regex-extract-loader
 ====================
 [![Build Status](https://travis-ci.org/jabney/regex-extract-loader.svg?branch=master)](https://travis-ci.org/jabney/regex-extract-loader)
 
-### *Under Development*
-
 Use regex to extract values from files and make them available in code.
 
 ## Example usage
@@ -206,3 +204,6 @@ const pathData = require('./assets/some.source.svg')
     { path: 'M373 649.3L185.4 546....', index: 239 }
   ]
 ```
+## Other Examples
+
+See the unit tests for [match](https://github.com/jabney/regex-extract-loader/blob/master/test/option-match.spec.js) and [project](https://github.com/jabney/regex-extract-loader/blob/master/test/option-project.spec.js) for additional examples.
