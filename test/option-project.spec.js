@@ -70,26 +70,3 @@ test('Parses key/value pairs (project)', async () => {
   expect(map.attributes.length).toBe(5)
   expect(map.attributes[4]).toBe('nebulicious')
 })
-
-/**
- * Example
- */
-// test('example', async () => {
-//   // Set up loader options.
-//   const options = {
-//     regex: 'path.+\\bd="(.+?)"',
-//     flags: 'g',
-//     match: (match) => match,
-//     // Project gets called after all matches are found (must return a value).
-//     project: (result) => {
-//       return result.map((match) => {
-//         return { match: match[1], index: match.index }
-//       })
-//     }
-// }
-
-//   const stats = await compiler('data/example.svg', options)
-//   const output = stats.toJson().modules[0].source
-//   const result = helpers.value(output)
-//   console.log(result)
-// })
