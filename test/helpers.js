@@ -1,4 +1,4 @@
-const reExtract = /export default (.+)$/
+const reExtract = /module.exports = (.+)$/
 
 module.exports = {
   value(output) {

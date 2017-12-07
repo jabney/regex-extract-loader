@@ -17,7 +17,7 @@ function regexExtractLoader(source) {
   var regex = getRegex(options.regex, options.flags)
   var projectFn = getProjectFn(options)
   var value = projectFn(exec(regex, source, options))
-  return 'export default ' + JSON.stringify(value)
+  return 'module.exports = ' + JSON.stringify(value)
 }
 
 /**
