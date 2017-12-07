@@ -46,15 +46,17 @@ test('Parses key/value pairs (project)', async () => {
   const options = {
     regex: '^(.+)=(.+)$',
     flags: 'mg',
+    // Match gets called for every match (must return a value).
+    match: function (match) {
+      return { key: match[1], value: match[2] }
+    },
     // Project gets called after all matches are found (must return a value).
-    project: function (matches) {
-      return matches.reduce((map, match) => {
-        const key = match[1]
-        const value = match[2]
+    project: function (result) {
+      return result.reduce((map, item) => {
         try {
-          map[key] = JSON.parse(value)
+          map[item.key] = JSON.parse(item.value)
         } catch (e) {
-          map[key] = value
+          map[item.key] = item.value
         }
         return map
       }, {})
