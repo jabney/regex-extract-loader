@@ -1,3 +1,94 @@
 regex-extract-loader
 ====================
 Under development
+
+Use regex to extract values from files and make them available in code.
+
+## Example usage
+Extract the attribute data from path tags in an svg file.
+
+### some.source.svg (input)
+```html
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3046.7 875.7">
+  <title>webpack-logo</title>
+  <path class="back" fill="#FFF" d="M387 0l387 218.9v437.9L387..."/>
+  <path class="outer" fill="#8ED6FB" d="M704.9 641.7L399.8 814..."/>
+  <path class="inner" fill="#1C78C0" d="M373 649.3L185.4 546...."/>
+</svg>
+```
+
+### webpack.config.js (config)
+```javascript
+module.exports = {
+  ...,
+  module: {
+    rules: [{
+      test: /\.source.svg$/,
+      use: {
+        loader: 'regex-extract-loader',
+        options: {
+          regex: 'path.+\\bd="(.+?)"',  // can also be a RegExp object (required)
+          flags: 'g'                    // ignored if a RegExp is used (optional)
+          match: (match) => match,      // called for each match (optional)
+          project: (result) => result   // called after processing (optional)
+        }
+      }
+    }]
+  }
+}
+```
+
+### some.module.js (output)
+
+```javascript
+const pathData = require('./assets/some.source.svg')
+
+  // Because the global flag was used, the result is an array of RegExp match object arrays.
+  [
+    // First match
+    [
+      // 0: the entire match
+      'path class="back" fill="#FFF" d="M387 0l387 218.9v437.9L387..."',
+      // 1: the first (and only) capture group
+      'M387 0l387 218.9v437.9L387...',
+      // index: the index of the match in the input
+      index: 101,
+      // input: the entire input string
+      input: '<svg xmlns="http://www.w3.org/2000/svg" viewBox=...>...</svg>'
+    ],
+    // Second match
+    [
+      'path class="outer" fill="#8ED6FB" d="M704.9 641.7L399.8 814..."',
+      'M704.9 641.7L399.8 814...',
+      index: 170,
+      input: '<svg xmlns="http://www.w3.org/2000/svg" viewBox=...>...</svg>'
+    ],
+    // Third match
+    [
+      'path class="inner" fill="#1C78C0" d="M373 649.3L185.4 546...."',
+      'M373 649.3L185.4 546....',
+      index: 239,
+      input: '<svg xmlns="http://www.w3.org/2000/svg" viewBox=...>...</svg>'
+    ]
+  ]
+```
+
+## Options object
+
+```javascript
+options: {
+  regex: 'path.+\\bd="(.+?)"',
+  flags: 'g',
+  match: (match) => match,
+  project: (result) => result
+}
+```
+
+`regex (string|RegExp)` (required) can be a string or RegExp object. For strings make sure escape characters use a double backslash, e.g., `\\w+`.
+
+`flags` (optional) used if `regex` is a string, otherwise ignored
+
+`match` (optional) called for each match. Can be used to modify each match object. Must return a value if used.
+
+`project` (optional) called at the end of processing. Can be used to modify the final result. Must return a value if used.
+
