@@ -74,6 +74,21 @@ const pathData = require('./assets/some.source.svg')
   ]
 ```
 
+### Typescript
+Using `import` instead of `require` may cause issues when using Typescript to import text files. In this case, include a `declaratins.d.ts` file in your project:
+
+```typescript
+declare module '*.svg' {
+  const content: any
+  export default content
+}
+```
+
+Then you should be able to import the file:
+```typescript
+import pathData from './source.svg'
+```
+
 ## Options object
 
 ```javascript
