@@ -1,7 +1,5 @@
 regex-extract-loader
 ====================
-Under development
-
 Use regex to extract values from files and make them available in code.
 
 ## Example usage
@@ -86,9 +84,8 @@ options: {
 
 `regex (string|RegExp)` (required) can be a string or RegExp object. For strings make sure escape characters use a double backslash, e.g., `\\w+`.
 
-`flags` **(optional)** used if `regex` is a string, otherwise ignored
+`flags (string)` **(optional)** used if `regex` is a string, otherwise ignored
 
-`match` **(optional)** called for each match. Can be used to modify each match object. Must return a value if used.
+`match (function)` **(optional)** called for each match. Can be used to modify each match object. Must return a value if used.
 
-`project` **(optional)** called at the end of processing. Can be used to modify the final result. Must return a value if used.
-
+`project (function)` **(optional)** called at the end of processing. Can be used to modify the final result. Must return a value if used.
