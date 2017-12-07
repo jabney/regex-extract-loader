@@ -7,7 +7,5 @@
       }
     }
   ]],
-  "plugins": [
-    "transform-regenerator"
-  ]
+  "plugins": []
 }
