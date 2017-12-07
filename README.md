@@ -72,9 +72,10 @@ const pathData = require('./assets/some.source.svg')
   ]
 ```
 
-### Typescript
+## Typescript
 Using `import` instead of `require` may cause issues when using Typescript to import text files. In this case, include a `declaratins.d.ts` file in your project:
 
+### declarations.d.ts
 ```typescript
 declare module '*.svg' {
   const svg: any
@@ -100,13 +101,13 @@ options: {
 
 `regex (string|RegExp)` (required) can be a string or RegExp object. For strings make sure escape characters use a double backslash, e.g., `\\w+`.
 
-`flags (string)` **(optional)** used if `regex` is a string, otherwise ignored
+`flags (string)` **(optional)** used if `regex` is a string, otherwise ignored. If `g` (global) is specified either in the `flags` property or in the supplied `regex`, an array of RegExp is returned.
 
 `match (function)` **(optional)** called for each match. Can be used to modify each match object. Must return a value if used.
 
 `project (function)` **(optional)** called at the end of processing. Can be used to modify the final result. Must return a value if used.
 
-Output: If the global flag `g` was used, the output will be a list of [RegExp match arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec). Otherwise it will be a single [RegExp match array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec).
+**Output:** If the global flag `g` was used, the output will be a list of [RegExp match arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec). Otherwise it will be a single [RegExp match array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec).
 
 ## Using match
 The `match` option can be used to modify the content of individual matches. A common use case is to return from the match array only items that would be needed in the final result. Since `regex-extract-loader` by default returns the RegExp match array, which includes the entire source string, it's much more efficient to only send along whatever is needed.
@@ -156,7 +157,7 @@ const pathData = require('./assets/some.source.svg')
 ```
 
 ## Using project
-The `project` option can be used to modify the final result after all matches have been processed. It receives a list of items if the `g` (global) flag was specified in the `regex`, or a single item if `g` was not specified. The form of the result passed to `project` will be in whatever form was returned from `match`. If `match` was not used, the result will be either a list of RegExp match arrays or a single one, depending on whether the `regex` was global or not.
+The `project` option can be used to modify the final result after all matches have been processed. It receives a list of items if the `g` (global) flag was specified in the `regex`, or a single item if `g` was not specified. The form of the result passed to `project` will be in whatever form was returned from `match`. If `match` is not used, the result will be either a list of RegExp match arrays or a single one, depending on whether the `regex` was global or not.
 
 ### some.source.svg (input)
 ```html
