@@ -24,11 +24,11 @@
     "index.js"
   ],
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
     "loader-utils": "^1.1.0"
   },
   "devDependencies": {
     "babel-jest": "^21.2.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "jest": "^21.2.1",
     "memory-fs": "^0.4.1",
