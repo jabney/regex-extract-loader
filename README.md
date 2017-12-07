@@ -1,5 +1,7 @@
 regex-extract-loader
 ====================
+[![Build Status](https://travis-ci.org/jabney/regex-extract-loader.svg?branch=master)](https://travis-ci.org/jabney/simple-subject)
+
 Use regex to extract values from files and make them available in code.
 
 ## Example usage
