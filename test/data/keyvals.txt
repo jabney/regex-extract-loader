@@ -1,0 +1,3 @@
+name=Nebula
+rank=10
+attributes=["female", "blue", "cybernetic", "angry", "nebulicious"]
