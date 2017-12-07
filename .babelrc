@@ -8,6 +8,6 @@
     }
   ]],
   "plugins": [
-    "babel-polyfill"
+    "transform-regenerator"
   ]
 }
