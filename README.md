@@ -79,8 +79,8 @@ Using `import` instead of `require` may cause issues when using Typescript to im
 
 ```typescript
 declare module '*.svg' {
-  const content: any
-  export default content
+  const svg: any
+  export default svg
 }
 ```
 
@@ -158,7 +158,7 @@ const pathData = require('./assets/some.source.svg')
 ```
 
 ## Using project
-The `project` option can be used to modify the final result, after all matches have been processed. It receives a list of items if the `g` (global) flag was specified in the `regex`, or a single item if `g` was not specified. The form of the result passed to `project` will be in whatever form was returned from `match`. If `match` was not used, the result will be either a list of RegExp match arrays or a single one, depending on whether the `regex` was global or not.
+The `project` option can be used to modify the final result after all matches have been processed. It receives a list of items if the `g` (global) flag was specified in the `regex`, or a single item if `g` was not specified. The form of the result passed to `project` will be in whatever form was returned from `match`. If `match` was not used, the result will be either a list of RegExp match arrays or a single one, depending on whether the `regex` was global or not.
 
 ### some.source.svg (input)
 ```html
