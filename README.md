@@ -207,4 +207,4 @@ const pathData = require('./assets/some.source.svg')
 ```
 ## Other Examples
 
-See the unit tests for [match](https://github.com/jabney/regex-extract-loader/blob/master/test/option-match.spec.js) and [project](https://github.com/jabney/regex-extract-loader/blob/master/test/option-project.spec.js) for additional examples.
+See the [match](https://github.com/jabney/regex-extract-loader/blob/master/test/option-match.spec.js) and [project](https://github.com/jabney/regex-extract-loader/blob/master/test/option-project.spec.js) unit tests for additional examples.
