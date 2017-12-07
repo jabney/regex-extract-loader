@@ -2,6 +2,8 @@
   "name": "regex-extract-loader",
   "version": "0.1.0",
   "description": "A webpack loader to extract values from files with regex",
+  "author": "James Abney",
+  "license": "MIT",
   "main": "./lib/index.js",
   "repository": {
     "type": "git",
@@ -18,8 +20,6 @@
     "regex",
     "extract"
   ],
-  "author": "James Abney",
-  "license": "MIT",
   "dependencies": {
     "loader-utils": "^1.1.0"
   },
