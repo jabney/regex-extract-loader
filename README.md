@@ -205,6 +205,107 @@ const pathData = require('./assets/some.source.svg')
     { path: 'M373 649.3L185.4 546....', index: 239 }
   ]
 ```
-## Other Examples
+
+## Examples
+
+### Extract release information from a change log
+
+#### changelog.md (input)
+```
+## [2.0.0] - 2017-11-20
+New version
+
+## [1.0.1] - 2017-11-07
+Fix stuff
+
+## [1.0.0] - 2017-11-05
+Initial release
+```
+
+#### webpack.config.js (config)
+```javascript
+module.exports = {
+  ...,
+  module: {
+    rules: [{
+      test: /changelog.md$/,
+      use: {
+        loader: 'regex-extract-loader',
+        options: {
+          regex: '\\s*## \\[(.+)\\] - (\\d{4}-\\d{2}-\\d{2})\n(.+)',
+          flags: 'g',
+          match: (match) => ({
+            version: match[1], date: match[2], note: match[3]
+          })
+        }
+      }
+    }]
+  }
+}
+```
+
+#### some.module.js (output)
+```javascript
+const versions = require('./assets/changelog.svg')
+
+  [
+    { version: '2.0.0', date: '2017-11-20', note: 'New version' },
+    { version: '1.0.1', date: '2017-11-07', note: 'Fix stuff' },
+    { version: '1.0.0', date: '2017-11-05', note: 'Initial release' }
+  ]
+```
+
+### Parse key/value pairs from a source in key=value format
+
+#### some.source.cfg (input)
+```
+name=Nebula
+rank=10
+attributes=["female", "blue", "cybernetic", "angry", "nebulicious"]
+```
+
+#### webpack.config.js (config)
+```javascript
+module.exports = {
+  ...,
+  module: {
+    rules: [{
+      test: /\.source.cfg$/,
+      use: {
+        loader: 'regex-extract-loader',
+        options: {
+          regex: '^(.+)=(.+)$',
+          flags: 'mg',
+          match: (match) => ({ key: match[1], value: match[2] }),
+          project: (result) => {
+            return result.reduce((map, item) => {
+              try {
+                map[item.key] = JSON.parse(item.value)
+              } catch (e) {
+                map[item.key] = item.value
+              }
+              return map
+            }, {})
+          }
+        }
+      }
+    }]
+  }
+}
+```
+
+#### some.module.js (output)
+```javascript
+const cfg = require('./assets/some.source.cfg')
+
+{
+  name: 'Nebula',
+  rank: 10,
+  attributes: [ 'female', 'blue', 'cybernetic', 'angry', 'nebulicious' ]
+}
+```
+
+
+### Other Examples
 
 See the [match](https://github.com/jabney/regex-extract-loader/blob/master/test/option-match.spec.js) and [project](https://github.com/jabney/regex-extract-loader/blob/master/test/option-project.spec.js) unit tests for additional examples.
