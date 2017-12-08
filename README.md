@@ -101,7 +101,7 @@ options: {
 
 `regex (string|RegExp)` (required) can be a string or RegExp object. For strings make sure escape characters use a double backslash, e.g., `\\w+`.
 
-`flags (string)` **(optional)** used if `regex` is a string, otherwise ignored. If `g` (global) is specified either in the `flags` property or in the supplied `regex`, an array of RegExp is returned.
+`flags (string)` **(optional)** used if `regex` is a string, otherwise ignored. If `g` (global) is specified either in the `flags` property or in the supplied `regex`, an array of RegExp match arrays is returned. Otherwise a single RegExp match array is returned.
 
 `match (function)` **(optional)** called for each match. Can be used to modify each match object. Must return a value if used.
 
@@ -246,7 +246,7 @@ module.exports = {
 
 #### some.module.js (output)
 ```javascript
-const versions = require('./assets/changelog.svg')
+const versions = require('./changelog.md')
 
   [
     { version: '2.0.0', date: '2017-11-20', note: 'New version' },
