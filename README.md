@@ -73,7 +73,7 @@ const pathData = require('./assets/some.source.svg')
 ```
 
 ## Typescript
-Using `import` instead of `require` may cause issues when using Typescript to import text files. In this case, include a `declaratins.d.ts` file in your project:
+Using `import` instead of `require` may cause issues when using Typescript to import text files. In this case, include a `declarations.d.ts` file in your project:
 
 ### declarations.d.ts
 ```typescript
