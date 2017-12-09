@@ -81,9 +81,7 @@ declare module '*.svg' {
   const svg: any
   export default svg
 }
-```
 
-```typescript
 declare module '*.txt' {
   const txt: any
   export default txt
