@@ -2,7 +2,7 @@ regex-extract-loader
 ====================
 [![Build Status](https://travis-ci.org/jabney/regex-extract-loader.svg?branch=master)](https://travis-ci.org/jabney/regex-extract-loader)
 
-Use regex to extract values from files and make them available in code.
+Use regex to extract values from files and make them available in code, or transform a source from one form to another.
 
 ## Example usage
 Extract the attribute data from path tags in an svg file.
