@@ -38,16 +38,16 @@ function typeOf(object) {
  * @returns {RegExp}
  */
 function getRegex(regex, flags) {
-  var type = typeOf(regex)
+  var result = typeOf(regex) === 'String'
+    ? new RegExp(regex, flags || '')
+    : regex
 
-  if (type === 'String') {
-    return new RegExp(regex, flags || '')
-  } else if (type === 'RegExp') {
-    return regex
-  } else {
+  if (typeOf(result) !== 'RegExp') {
     throw new Error(
       NAME + ': option "regex" must be a string or a RegExp object')
   }
+
+  return result
 }
 
 /**
