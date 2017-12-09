@@ -16,8 +16,8 @@ Update readme with additional examples
 ## [0.2.0] - 2017-12-07
 Provisional release
 
-## [0.1.0-dev.0] - 2017-12-07
+## [0.1.0-dev.1] - 2017-12-07
 Use "module.exports" for loader output
 
-## [0.1.0-dev.1] - 2017-12-06
+## [0.1.0-dev.0] - 2017-12-06
 Initial version
