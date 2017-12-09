@@ -18,6 +18,8 @@
     "webpack",
     "loader",
     "regex",
+    "regular",
+    "expressions",
     "extract"
   ],
   "files": [
