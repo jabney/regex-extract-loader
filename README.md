@@ -105,7 +105,7 @@ options: {
 }
 ```
 
-`regex (string|RegExp)` (required) can be a string or RegExp object. For strings make sure escape characters use a double backslash, e.g., `\\w+`.
+`regex (string|RegExp)` **(required)** can be a string or RegExp object. For strings make sure escape characters use a double backslash, e.g., `\\w+`.
 
 `flags (string)` **(optional)** used if `regex` is a string, otherwise ignored. If `g` (global) is specified either in the `flags` property or in the supplied `regex`, an array of RegExp match arrays is returned. Otherwise a single RegExp match array is returned.
 
