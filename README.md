@@ -83,9 +83,17 @@ declare module '*.svg' {
 }
 ```
 
+```typescript
+declare module '*.txt' {
+  const txt: any
+  export default txt
+}
+```
+
 Then you should be able to import the file:
 ```typescript
 import pathData from './source.svg'
+import text from './somefile.txt'
 ```
 
 ## Options object
