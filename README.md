@@ -113,7 +113,7 @@ options: {
 
 `project (function)` **(optional)** called at the end of processing. Can be used to modify the final result. Must return a value if used.
 
-**Output:** If the global flag `g` was used, the output will be a list of [RegExp match objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec). Otherwise it will be a single [RegExp match object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec).
+**Output:** If the global flag `g` was used, the output will be a list of [RegExp match objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec#Description). Otherwise it will be a single [RegExp match object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec#Description).
 
 ## Using match
 The `match` option can be used to modify the content of individual matches. A common use case is to return from the match object only items that would be needed in the final result. Since `regex-extract-loader` by default returns the RegExp match object, which includes the entire source string, it's much more efficient to only send along whatever is needed.
