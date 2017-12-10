@@ -30,16 +30,6 @@ function regexExtractLoader(source) {
 }
 
 /**
- * Return the type of an object as a string.
- *
- * @param {any} object
- * @returns {string}
- */
-function typeOf(object) {
-  return Object.prototype.toString.call(object).slice(8, -1)
-}
-
-/**
  * Return the options object.
  *
  * @param {LoaderContext} context
@@ -47,6 +37,16 @@ function typeOf(object) {
  */
 function getOptions(context) {
   return loaderUtils.getOptions(context)
+}
+
+/**
+ * Return the type of an object as a string.
+ *
+ * @param {any} object
+ * @returns {string}
+ */
+function typeOf(object) {
+  return Object.prototype.toString.call(object).slice(8, -1)
 }
 
 /**
