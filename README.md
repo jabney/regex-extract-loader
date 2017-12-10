@@ -4,7 +4,7 @@ regex-extract-loader
 
 Use regex to extract values from source files and make them available in code, or transform a source file into another form.
 
-The `regex-extract-loader` takes a file's content as input, runs it against a user-supplied regular expression, and returns match information as its output by default. If the `g` (global) flag is not used, the result is a single RegExp match object. If the `g` flag is used, the resulit is a list of RegExp match objects. The output can be transformed, either on a per-match basis or at the end of the entire operation using the `match` and/or `project` functions.
+The `regex-extract-loader` takes a file's content as input, runs it against a user-supplied regular expression, and returns match information as its output by default. If the `g` (global) flag is not used, the result is a single RegExp match object. If the `g` flag is used, the resulit is a list of RegExp match objects. The output can be transformed, either on a per-match basis or at the end of the entire operation, using the `match` and/or `project` functions.
 
 ## Example usage
 Extract the attribute data from path tags in an svg file.
