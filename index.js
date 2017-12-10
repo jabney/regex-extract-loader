@@ -7,17 +7,24 @@ var NAME = 'Regex Extract Loader'
 /**
  * The Regex Extract Loader.
  *
+ * @typedef {Object} LoaderOptions
+ * @property {RegExp} regex
+ * @property {string?} flags
+ * @property {(match: RegExpExecArray) => any} match
+ * @property {(match: any) => any} project
+ *
  * Extract values from the source via a regular expression.
  *
  * @param {string} source
  * @returns {string}
  */
 function regexExtractLoader(source) {
-  var options = loaderUtils.getOptions(this)
+  var options = getOptions(this)
   var regex = getRegex(options.regex, options.flags)
+  var matchFn = getMatchFn(options)
   var projectFn = getProjectFn(options)
-  var value = projectFn(exec(regex, source, options))
-  return 'module.exports = ' + JSON.stringify(value)
+  var result = projectFn(exec(regex, source, matchFn))
+  return 'module.exports = ' + JSON.stringify(result)
 }
 
 /**
@@ -30,6 +37,15 @@ function typeOf(object) {
   return Object.prototype.toString.call(object).slice(8, -1)
 }
 
+/**
+ * Return the options object.
+ *
+ * @param {LoaderContext} context
+ * @returns {LoaderOptions}
+ */
+function getOptions(context) {
+  return loaderUtils.getOptions(context)
+}
 /**
  * Transform options.regex into a RegExp if it isn't one already.
  *
@@ -53,7 +69,7 @@ function getRegex(regex, flags) {
 /**
  * Return the project function if specified, or the identity function.
  *
- * @param {any} options
+ * @param {LoaderOptions} options
  * @returns {(matches: any[]) => any}
  */
 function getProjectFn(options) {
@@ -71,8 +87,8 @@ function getProjectFn(options) {
 /**
  * Return the match function if specified, or the identity function.
  *
- * @param {{match: (RegExpMatchArray) => void}} options
- * @returns {(match: RegExpMatchArray) => any}
+ * @param {LoaderOptions} options
+ * @returns {(match: RegExpExecArray) => any}
  */
 function getMatchFn(options) {
   var matchFn = typeof options.match !== 'undefined'
@@ -87,7 +103,7 @@ function getMatchFn(options) {
 }
 
 /**
- * Return the passed value.
+ * Return the given value (do nothing).
  *
  * @param {any} value
  * @returns
@@ -98,27 +114,26 @@ function identityFn(value) {
 
 /**
  * Execute a regular rexpression and return the match or matches.
- * If the global flag used, return a list of matches; otherwise
- * return the found match or null.
+ * If the global flag is used, return a list of matches; otherwise
+ * return the found match (or null if nothing found).
  *
  * @param {RegExp} regex
  * @param {string} source
- * @param {any} options
- * @returns {RegExpMatchArray|RegExpMatchArray[]}
+ * @param {(match: RegExpExecArray) => any} matchFn
+ * @returns {RegExpExecArray|RegExpExecArray[]}
  */
-function exec(regex, source, options) {
+function exec(regex, source, matchFn) {
   var match, matches
-  var matchFn = getMatchFn(options)
 
   if (regex.global) {
     matches = []
     while ((match = regex.exec(source)) !== null) {
-      matches.push(matchFn(match))
+      matches.push(matchFn(match || null))
     }
     return matches
   } else {
     match = regex.exec(source)
-    return matchFn(match)
+    return matchFn(match || null)
   }
 }
 
