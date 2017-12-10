@@ -131,7 +131,7 @@ function exec(regex, source, matchFn) {
   if (regex.global) {
     matches = []
     while ((match = regex.exec(source)) !== null) {
-      matches.push(matchFn(match || null))
+      matches.push(matchFn(match))
     }
     return matches
   } else {
