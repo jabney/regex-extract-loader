@@ -5,13 +5,15 @@ var loaderUtils = require('loader-utils')
 var NAME = 'Regex Extract Loader'
 
 /**
- * The Regex Extract Loader.
- *
  * @typedef {Object} LoaderOptions
  * @property {RegExp} regex
  * @property {string?} flags
  * @property {(match: RegExpExecArray) => any} match
  * @property {(match: any) => any} project
+ */
+
+/**
+ * The Regex Extract Loader.
  *
  * Extract values from the source via a regular expression.
  *
