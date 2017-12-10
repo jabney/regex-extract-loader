@@ -2,7 +2,9 @@ regex-extract-loader
 ====================
 [![Build Status](https://travis-ci.org/jabney/regex-extract-loader.svg?branch=master)](https://travis-ci.org/jabney/regex-extract-loader)
 
-Use regex to extract values from files and make them available in code, or transform a source from one form to another.
+Use regex to extract values from source files and make them available in code, or transform a source file into another form.
+
+The `regex-extract-loader` takes a file's content as input, runs it against a user-supplied regular expression, and returns match information as its output by default. If the `g` (global) flag is not used, the result is a single RegExp match object. If the `g` flag is used, the resulit is a list of RegExp match objects. The output can be transformed, either on a per-match basis or at the end of the entire operation using the `match` and/or `project` functions.
 
 ## Example usage
 Extract the attribute data from path tags in an svg file.
@@ -163,7 +165,7 @@ const pathData = require('./assets/some.source.svg')
 ```
 
 ## Using project
-The `project` option can be used to modify the final result after all matches have been processed. It receives a list of items if the `g` (global) flag was specified in the `regex`, or a single item if `g` was not specified. The form of the result passed to `project` will be in whatever form was returned from `match`. If `match` is not used, the result will be either a list of RegExp match objects or a single one, depending on whether the `regex` was global or not.
+The `project` option can be used to modify the final result after all matches have been processed. It receives a list of items if the `g` (global) flag was specified in the `regex`, or a single item if `g` was not specified. The result passed to `project` will be whatever form was returned from `match`. If `match` is not used, the result passed to `project` will be either a list of RegExp match objects or a single one, depending on whether the `regex` was global or not.
 
 ### some.source.svg (input)
 ```html
