@@ -48,6 +48,7 @@ function typeOf(object) {
 function getOptions(context) {
   return loaderUtils.getOptions(context)
 }
+
 /**
  * Transform options.regex into a RegExp if it isn't one already.
  *
