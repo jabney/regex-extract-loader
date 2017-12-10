@@ -6,7 +6,7 @@ var NAME = 'Regex Extract Loader'
 
 /**
  * @typedef {Object} LoaderOptions
- * @property {RegExp} regex
+ * @property {string|RegExp} regex
  * @property {string} [flags]
  * @property {(match: RegExpExecArray) => any} [match]
  * @property {(match: any) => any} [project]
