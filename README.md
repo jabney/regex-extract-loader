@@ -2,7 +2,7 @@ regex-extract-loader
 ====================
 [![Build Status](https://travis-ci.org/jabney/regex-extract-loader.svg?branch=master)](https://travis-ci.org/jabney/regex-extract-loader)
 
-Use regex to extract values from source files and make them available in code, or transform a source file into another form.
+A webpack loader that uses regex to extract values from source files and make them available in code, or transform source into another form.
 
 The `regex-extract-loader` takes a file's content as input, runs it against a user-supplied regular expression, and returns match information as its output by default. The output can be transformed, either on a per-match basis or at the end of the entire operation, using the `match` and/or `project` functions.
 
@@ -44,7 +44,7 @@ module.exports = {
 ```javascript
 const pathData = require('./assets/some.source.svg')
 
-  // Because the global flag was used, the result is an array of RegExp match object arrays.
+  // Because the global flag was used, the result is an array of RegExp match objectss.
   [
     // First match
     [
@@ -73,6 +73,8 @@ const pathData = require('./assets/some.source.svg')
     ]
   ]
 ```
+
+By default the entire match object is returned in the list, which includes the entire input. With the `match` and/or `project` options this can be pared down or transformed. See [Using match](#using-match) and [Using project](#using-project) below for details.
 
 ## Typescript
 Using `import` instead of `require` may cause issues when using Typescript to import text files. In this case, include a `declarations.d.ts` file in your project:
