@@ -1,6 +1,6 @@
 {
   "name": "regex-extract-loader",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "description": "A webpack loader to extract values from files with regex",
   "author": "James Abney",
   "license": "MIT",
